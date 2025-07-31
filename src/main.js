@@ -1,8 +1,6 @@
 const resultContainer = document.getElementById("result");
 
-async function generateRecipe() {
-  resultContainer.innerHTML = "";
-  // Generate text with Gemini 2.0 Flash
+async function generateTextRecipe() {
   const chat_resp = await puter.ai.chat(
     "Generate a recipe of spanish omelette",
     true,
@@ -12,11 +10,17 @@ async function generateRecipe() {
   for await (const part of chat_resp) {
     resultContainer.innerHTML += part?.text?.replaceAll("\n", "<br>");
   }
+}
 
-  // Generate image with DALL-E 3
+async function generateImageRecipe() {
   puter.ai.txt2img("A picture of a cat.", true).then((image) => {
     resultContainer.appendChild(image);
   });
+}
+async function generateRecipe() {
+  resultContainer.innerHTML = "";
+  await generateTextRecipe();
+  await generateImageRecipe();
 }
 
 document
