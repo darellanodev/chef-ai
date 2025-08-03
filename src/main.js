@@ -8,9 +8,12 @@ async function generateImageRecipe() {
   });
 }
 async function generateRecipe() {
-  const textRecipe = new TextRecipe(resultContainer);
+  const testMode = false;
+  const userRecipe = "spanish omelette";
+  const textRecipe = new TextRecipe(resultContainer, userRecipe, testMode);
   resultContainer.innerHTML = "";
-  await textRecipe.getAI();
+  const response = await textRecipe.getAI();
+  textRecipe.print(response);
   await generateImageRecipe();
 }
 
