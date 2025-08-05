@@ -18,4 +18,8 @@ export default class TextRecipe {
       : result.message.content;
     this.resultContainer.innerHTML += response.replaceAll("\n", "<br>");
   }
+
+  validate(responseAI) {
+    return false;
+  }
 }
