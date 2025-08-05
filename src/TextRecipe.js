@@ -21,8 +21,11 @@ export default class TextRecipe {
 
   validate(responseAI) {
     try {
-      JSON.parse(responseAI);
-      return true;
+      const obj = JSON.parse(responseAI);
+      if ("ingredients" in obj && "instructions" in obj) {
+        return true;
+      }
+      return false;
     } catch (e) {
       return false;
     }
