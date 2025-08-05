@@ -13,8 +13,12 @@ async function generateRecipe() {
   const textRecipe = new TextRecipe(resultContainer, userRecipe, testMode);
   resultContainer.innerHTML = "";
   const response = await textRecipe.getAI();
-  textRecipe.print(response);
-  await generateImageRecipe();
+  if (textRecipe.validate(response)) {
+    textRecipe.print(response);
+    await generateImageRecipe();
+  } else {
+    resultContainer.innerHTML = "Error, try again.";
+  }
 }
 
 document
