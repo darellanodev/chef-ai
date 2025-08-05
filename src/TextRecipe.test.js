@@ -6,4 +6,10 @@ describe("TextRecipe - validate methods", () => {
     const textRecipe = new TextRecipe(null, "spanish omelette", false);
     expect(textRecipe.validate("")).toBe(false);
   });
+  it("should return true when responseAI is a valid JSON", () => {
+    const textRecipe = new TextRecipe(null, "spanish omelette", false);
+    const responseAI =
+      '{ "ingredients": ["eggs", "potatoes"], "instructions": ["mix", "cook"] }';
+    expect(textRecipe.validate(responseAI)).toBe(true);
+  });
 });

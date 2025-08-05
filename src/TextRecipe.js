@@ -20,6 +20,11 @@ export default class TextRecipe {
   }
 
   validate(responseAI) {
-    return false;
+    try {
+      JSON.parse(responseAI);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
