@@ -23,7 +23,16 @@ export default class TextRecipe {
     try {
       const obj = JSON.parse(responseAI);
       if ("ingredients" in obj && "instructions" in obj) {
-        return true;
+        if (Array.isArray(obj.ingredients) && Array.isArray(obj.instructions)) {
+          const allIngredientsStrings = obj.ingredients.every(
+            (item) => typeof item === "string"
+          );
+          const allInstructionsStrings = obj.instructions.every(
+            (item) => typeof item === "string"
+          );
+          return allIngredientsStrings && allInstructionsStrings;
+        }
+        return false;
       }
       return false;
     } catch (e) {

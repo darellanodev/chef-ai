@@ -20,4 +20,11 @@ describe("TextRecipe - validate method", () => {
 
     expect(textRecipe.validate(responseAI)).toBe(false);
   });
+  it("should return false when ingredients and instructions are not arrays of strings", () => {
+    const textRecipe = new TextRecipe(null, "spanish omelette", false);
+    const responseAI =
+      '{ "ingredients": "eggs", "instructions": ["mix", "cook"] }';
+
+    expect(textRecipe.validate(responseAI)).toBe(false);
+  });
 });
