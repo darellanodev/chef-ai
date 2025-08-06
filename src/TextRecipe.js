@@ -19,19 +19,19 @@ export default class TextRecipe {
     this.resultContainer.innerHTML += response.replaceAll("\n", "<br>");
   }
   isValidObject(obj) {
-    if ("ingredients" in obj && "instructions" in obj) {
-      if (Array.isArray(obj.ingredients) && Array.isArray(obj.instructions)) {
-        const allIngredientsStrings = obj.ingredients.every(
-          (item) => typeof item === "string"
-        );
-        const allInstructionsStrings = obj.instructions.every(
-          (item) => typeof item === "string"
-        );
-        return allIngredientsStrings && allInstructionsStrings;
-      }
+    if (!("ingredients" in obj) || !("instructions" in obj)) {
       return false;
     }
-    return false;
+    if (!Array.isArray(obj.ingredients) || !Array.isArray(obj.instructions)) {
+      return false;
+    }
+    const allIngredientsStrings = obj.ingredients.every(
+      (item) => typeof item === "string"
+    );
+    const allInstructionsStrings = obj.instructions.every(
+      (item) => typeof item === "string"
+    );
+    return allIngredientsStrings && allInstructionsStrings;
   }
   validate(responseAI) {
     try {
