@@ -12,7 +12,8 @@ async function generateRecipe() {
   const userRecipe = "spanish omelette";
   const textRecipe = new TextRecipe(resultContainer, userRecipe, testMode);
   resultContainer.innerHTML = "";
-  const response = await textRecipe.getAI();
+  let response = await textRecipe.getAI();
+  response = textRecipe.clean(response);
   if (textRecipe.validate(response)) {
     textRecipe.print(response);
     await generateImageRecipe();
