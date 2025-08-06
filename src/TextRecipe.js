@@ -41,4 +41,8 @@ export default class TextRecipe {
       return false;
     }
   }
+
+  clean(responseAI) {
+    return responseAI.replaceAll("```", "");
+  }
 }

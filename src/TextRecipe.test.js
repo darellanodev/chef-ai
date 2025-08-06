@@ -24,3 +24,14 @@ describe("TextRecipe - validate method", () => {
     expect(textRecipe.validate(responseAI)).toBe(false);
   });
 });
+
+describe("TextRecipe - clean method", () => {
+  it("should return the string without the three quotes", () => {
+    const responseAI =
+      '```{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }```';
+
+    expect(textRecipe.clean(responseAI)).toBe(
+      '{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }'
+    );
+  });
+});
