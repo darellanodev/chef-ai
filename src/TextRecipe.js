@@ -18,23 +18,25 @@ export default class TextRecipe {
       : result.message.content;
     this.resultContainer.innerHTML += response.replaceAll("\n", "<br>");
   }
-
+  isValidObject(obj) {
+    if ("ingredients" in obj && "instructions" in obj) {
+      if (Array.isArray(obj.ingredients) && Array.isArray(obj.instructions)) {
+        const allIngredientsStrings = obj.ingredients.every(
+          (item) => typeof item === "string"
+        );
+        const allInstructionsStrings = obj.instructions.every(
+          (item) => typeof item === "string"
+        );
+        return allIngredientsStrings && allInstructionsStrings;
+      }
+      return false;
+    }
+    return false;
+  }
   validate(responseAI) {
     try {
       const obj = JSON.parse(responseAI);
-      if ("ingredients" in obj && "instructions" in obj) {
-        if (Array.isArray(obj.ingredients) && Array.isArray(obj.instructions)) {
-          const allIngredientsStrings = obj.ingredients.every(
-            (item) => typeof item === "string"
-          );
-          const allInstructionsStrings = obj.instructions.every(
-            (item) => typeof item === "string"
-          );
-          return allIngredientsStrings && allInstructionsStrings;
-        }
-        return false;
-      }
-      return false;
+      return this.isValidObject(obj);
     } catch (e) {
       return false;
     }
