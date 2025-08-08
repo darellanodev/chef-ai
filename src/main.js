@@ -1,21 +1,27 @@
 import TextRecipe from "./TextRecipe.js";
 
-const resultContainer = document.getElementById("result");
+const imageElement = document.getElementById("image");
+const ingredientsElement = document.getElementById("ingredients");
+const instructionsElement = document.getElementById("instructions");
 
 async function generateImageRecipe() {
   puter.ai.txt2img("A picture of a cat.", true).then((image) => {
-    resultContainer.appendChild(image);
+    imageElement.appendChild(image);
   });
 }
 async function generateRecipe() {
   const testMode = false;
   const userRecipe = "spanish omelette";
-  const textRecipe = new TextRecipe(resultContainer, userRecipe, testMode);
-  resultContainer.innerHTML = "";
+  const textRecipe = new TextRecipe(userRecipe, testMode);
+  imageElement.innerHTML = "";
   let response = await textRecipe.getAI();
   response = textRecipe.clean(response);
   if (textRecipe.validate(response)) {
-    textRecipe.print(response);
+    textRecipe.print(
+      JSON.parse(response),
+      ingredientsElement,
+      instructionsElement
+    );
     await generateImageRecipe();
   } else {
     resultContainer.innerHTML = "Error, try again.";

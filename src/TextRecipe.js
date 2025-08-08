@@ -1,16 +1,18 @@
 export default class TextRecipe {
-  constructor(resultContainer, userRecipe, testMode) {
-    this.resultContainer = resultContainer;
+  constructor(userRecipe, testMode) {
     this.userRecipe = userRecipe;
     this.testMode = testMode;
   }
 
   async getAI() {
-    return await puter.ai.chat(
+    const response = await puter.ai.chat(
       `Generate a strictly JSON format about a '${this.userRecipe}' cooking recipe where there are two mainly keys: ingredients and instructions. Both of them are an array of strings. You must be concise in your responses.`,
       this.testMode,
       { model: "gemini-2.0-flash" }
     );
+    return this.testMode
+      ? response.message.content.text
+      : response.message.content;
   }
   print(objRecipe, ingredientsElement, instructionsElement) {
     ingredientsElement.innerHTML = "";
