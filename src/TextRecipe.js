@@ -12,11 +12,20 @@ export default class TextRecipe {
       { model: "gemini-2.0-flash" }
     );
   }
-  print(result) {
-    let response = this.testMode
-      ? result.message.content[0].text
-      : result.message.content;
-    this.resultContainer.innerHTML += response.replaceAll("\n", "<br>");
+  print(objRecipe, ingredientsElement, instructionsElement) {
+    ingredientsElement.innerHTML = "";
+    instructionsElement.innerHTML = "";
+
+    objRecipe.ingredients.forEach((ingredient) => {
+      const li = document.createElement("li");
+      li.textContent = ingredient;
+      ingredientsElement.appendChild(li);
+    });
+    objRecipe.instructions.forEach((instruction) => {
+      const li = document.createElement("li");
+      li.textContent = instruction;
+      instructionsElement.appendChild(li);
+    });
   }
   isValidObject(obj) {
     if (!("ingredients" in obj) || !("instructions" in obj)) {

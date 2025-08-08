@@ -1,3 +1,4 @@
+/** @vitest-environment jsdom */
 import { it, expect, describe } from "vitest";
 import TextRecipe from "./TextRecipe.js";
 
@@ -33,5 +34,23 @@ describe("TextRecipe - clean method", () => {
     expect(textRecipe.clean(responseAI)).toBe(
       '{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }'
     );
+  });
+});
+
+describe("TextRecipe - print", () => {
+  it("should render the ingredients and instructions as ordered lists", () => {
+    const objRecipe = {
+      ingredients: ["eggs", "potatoes"],
+      instructions: ["mix", "cook"],
+    };
+    const ingredientsElement = document.createElement("ul");
+    const instructionsElement = document.createElement("ol");
+
+    textRecipe.print(objRecipe, ingredientsElement, instructionsElement);
+
+    expect(ingredientsElement.children.length).toBe(2);
+    expect(ingredientsElement.children[0].textContent).toBe("eggs");
+    expect(instructionsElement.children.length).toBe(2);
+    expect(instructionsElement.children[0].textContent).toBe("mix");
   });
 });
