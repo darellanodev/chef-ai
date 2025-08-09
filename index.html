@@ -9,9 +9,18 @@
 
 <body>
     <button id="generateRecipe">Generate</button>
-    <ul id="ingredients"></ul>
-    <ol id="instructions"></ol>
-    <div id="image"></div>
+    <section aria-labelledby="ingredients-header">
+        <h2 id="ingredients-header">Ingredients</h2>
+        <ul id="ingredients"></ul>
+    </section>
+    <section aria-labelledby="instructions-header">
+        <h2 id="instructions-header">Instructions</h2>
+        <ol id="instructions"></ol>
+    </section>
+    <section aria-labelledby="image-header">
+        <h2 id="image-header">Image</h2>
+        <div id="image"></div>
+    </section>
     <script src="https://js.puter.com/v2/"></script>
     <script src="./src/TextRecipe.js" type="module"></script>
     <script src="./src/main.js" type="module"></script>
