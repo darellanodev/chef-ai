@@ -2,7 +2,7 @@
 import { it, expect, describe } from "vitest";
 import TextRecipe from "./TextRecipe.js";
 
-const textRecipe = new TextRecipe(null, "spanish omelette", false);
+const textRecipe = new TextRecipe("spanish omelette", false);
 describe("TextRecipe - validate method", () => {
   it("should return false when responseAI is an empty string", () => {
     expect(textRecipe.validate("")).toBe(false);
