@@ -37,7 +37,7 @@ describe("TextRecipe - clean method", () => {
   });
 });
 
-describe("TextRecipe - print", () => {
+describe("TextRecipe - print method", () => {
   it("should render the ingredients and instructions as ordered lists", () => {
     const objRecipe = {
       ingredients: ["eggs", "potatoes"],
