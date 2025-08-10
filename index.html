@@ -8,19 +8,29 @@
 </head>
 
 <body>
-    <button id="generateRecipe">Generate</button>
-    <section aria-labelledby="ingredients-header">
-        <h2 id="ingredients-header">Ingredients</h2>
-        <ul id="ingredients"></ul>
+    <section id="recipeForm" aria-labelledby="recipeForm-header">
+        <h1 id="recipeForm-header">Ask the chef</h1>
+        <label for="userRecipe">Enter the recipe</label>
+        <input type="text" id="userRecipe" name="userRecipe" placeholder="Enter the recipe">
+        <button id="generateRecipe">Generate</button>
     </section>
-    <section aria-labelledby="instructions-header">
-        <h2 id="instructions-header">Instructions</h2>
-        <ol id="instructions"></ol>
+    <section id="spinner">
+        <div class="spinner"></div>
     </section>
-    <section aria-labelledby="image-header">
-        <h2 id="image-header">Image</h2>
-        <div id="image"></div>
-    </section>
+    <article id="recipeCard">
+        <section aria-labelledby="ingredients-header">
+            <h2 id="ingredients-header">Ingredients</h2>
+            <ul id="ingredients"></ul>
+        </section>
+        <section aria-labelledby="instructions-header">
+            <h2 id="instructions-header">Instructions</h2>
+            <ol id="instructions"></ol>
+        </section>
+        <section aria-labelledby="image-header">
+            <h2 id="image-header">Image</h2>
+            <div id="image"></div>
+        </section>
+    </article>
     <script src="https://js.puter.com/v2/"></script>
     <script src="./src/TextRecipe.js" type="module"></script>
     <script src="./src/main.js" type="module"></script>
