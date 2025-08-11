@@ -16,7 +16,7 @@ body {
 
 #recipeCard,
 #recipeForm {
-  width: 35em;
+  width: clamp(20em, 80vw, 40em);
   padding: 2em;
   margin: 2em;
   border-radius: 0.7em;
