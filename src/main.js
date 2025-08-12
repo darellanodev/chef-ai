@@ -1,18 +1,17 @@
 import TextRecipe from './TextRecipe.js'
+import ImageRecipe from './ImageRecipe.js'
 
 const imageElement = document.getElementById('image')
 const ingredientsElement = document.getElementById('ingredients')
 const instructionsElement = document.getElementById('instructions')
+const errorMessage = document.getElementById('errorMessage')
 
-async function generateImageRecipe() {
-  puter.ai.txt2img('A picture of a cat.', true).then((image) => {
-    imageElement.appendChild(image)
-  })
-}
 async function generateRecipe() {
-  const testMode = false
+  const textTestMode = false
+  const imageTestMode = true
   const userRecipe = 'spanish omelette'
-  const textRecipe = new TextRecipe(userRecipe, testMode)
+  const textRecipe = new TextRecipe(userRecipe, textTestMode)
+  const imageRecipe = new ImageRecipe(userRecipe, imageTestMode)
   imageElement.innerHTML = ''
   let response = await textRecipe.getAI()
   response = textRecipe.clean(response)
@@ -22,9 +21,9 @@ async function generateRecipe() {
       ingredientsElement,
       instructionsElement
     )
-    await generateImageRecipe()
+    await imageRecipe.generateImageRecipe(imageElement)
   } else {
-    resultContainer.innerHTML = 'Error, try again.'
+    errorMessage.innerHTML = 'Error, try again.'
   }
 }
 
