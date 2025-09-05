@@ -35,6 +35,14 @@ describe('TextRecipe - clean method', () => {
       '{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }'
     )
   })
+  it('should return the string without the three quotes and json word', () => {
+    const responseAI =
+      '```json{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }```'
+
+    expect(textRecipe.clean(responseAI)).toBe(
+      '{ "items": ["eggs", "potatoes"], "steps": ["mix", "cook"] }'
+    )
+  })
 })
 
 describe('TextRecipe - print method', () => {
