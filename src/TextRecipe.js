@@ -54,6 +54,6 @@ export default class TextRecipe {
   }
 
   clean(responseAI) {
-    return responseAI.replaceAll('```', '')
+    return responseAI.replaceAll('```json', '').replaceAll('```', '')
   }
 }
